@@ -88,3 +88,7 @@ names:
 # The bellow is left just for the example; In the machine this code was created
 # there were 4 experiments run
 model_to_use: runs/segment/train4/weights/best.pt
+
+# Class coloring table (for visualization)
+color_map: 
+  23: blue

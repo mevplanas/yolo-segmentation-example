@@ -3,3 +3,4 @@ __pycache__/
 *.pt
 validation_images_output/
 .vscode/
+yolo_format/

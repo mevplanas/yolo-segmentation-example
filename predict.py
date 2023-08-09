@@ -36,6 +36,9 @@ if __name__ == '__main__':
     output_dir = os.path.join(current_dir, 'validation_images_output')
     os.makedirs(output_dir, exist_ok=True)
 
+    # Reading the coloring map 
+    color_map = config['color_map']
+
     # Iterating over the images 
     for image in images:
         # Defining the full path to image 
@@ -54,17 +57,23 @@ if __name__ == '__main__':
         draw = ImageDraw.Draw(img)
         
         for r in results:
+            # Extracting the class_id
+            class_id = r.boxes.cls.numpy()
+
             # Getting the polygons 
             polygons = r.masks.segments
 
             # Iterating over the polygons
-            for polygon in polygons:
+            for i, polygon in enumerate(polygons):
 
                 # Converting normalized coordinates to absolute coordinates
                 polygon = [(x * w, y * h) for x, y in polygon]
 
+                # Getting the class color 
+                cls_color = color_map.get(class_id[i], 'black')
+
                 # Drawing the polygon 
-                draw.polygon(polygon, outline='red', width=6)
+                draw.polygon(polygon, outline=cls_color, width=6)
 
         # Saving the image to the output 
         img.save(os.path.join(output_dir, image))
