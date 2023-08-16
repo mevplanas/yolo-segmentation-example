@@ -7,9 +7,19 @@ import json
 # Regex 
 import re 
 
+# Configuration reading 
+import yaml
+
 if __name__ == '__main__': 
     # Infering the current working directory 
     current_dir = os.getcwd()
+
+    # Reading the configuration file 
+    with open(os.path.join(current_dir, 'configuration.yaml'), 'r') as f:
+        config = yaml.safe_load(f)
+
+    # Extracting the label remapper 
+    label_remapper = config.get('label_remapper', {})
 
     # Defining the path to the coco dataset
     path_to_coco = os.path.join(current_dir, 'coco_format')
@@ -36,6 +46,9 @@ if __name__ == '__main__':
             segment = annotation['segmentation'][0]
             class_id = annotation['category_id']
             image_id = annotation['image_id']
+
+            # Remapping the class id
+            class_id = label_remapper.get(class_id, class_id)
 
             # Creating a string for the yolo file 
             yolo_string = f'{class_id} {" ".join([str(x) for x in segment])}'

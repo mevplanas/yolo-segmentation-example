@@ -4,3 +4,4 @@ __pycache__/
 validation_images_output/
 .vscode/
 yolo_format/
+datasets/
