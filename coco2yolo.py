@@ -34,7 +34,7 @@ if __name__ == '__main__':
     # Iterating through the images 
     for file in files:
         # Loading json file 
-        with open(os.path.join(path_to_coco, file), 'r') as f:
+        with open(os.path.join(path_to_coco, file), 'r', encoding='utf-8') as f:
             coco = json.load(f)
         
         # Extracting the information about the images that were labeled 

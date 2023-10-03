@@ -1,4 +1,4 @@
-path: /home/eligijus/projects/yolo-segmentation-example/datasets  # dataset root dir
+path: C:\Users\austeja.burmonaite\OneDrive - UAB VILNIAUS PLANAS\Desktop\yolo-segmentation-example\datasets\  # dataset root dir
 train: images/train  # train images (relative to 'path') 4 images
 val: images/val  # val images (relative to 'path') 4 images
 
